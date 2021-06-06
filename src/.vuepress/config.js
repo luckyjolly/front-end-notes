@@ -1,7 +1,10 @@
 const { resolve, genSidebarConfig } = require('./utils/index')
 const { description } = require('../../package')
 
-const siderBarOptions = { hasSub: true, exclude: ['README.md', 'assets', '.DS_Store', 'docs', 'images'] }
+const siderBarOptions = {
+  hasSub: true,
+  exclude: ['README.md', 'assets', '.DS_Store', 'docs', 'images']
+}
 
 const nav = [
   {
@@ -222,6 +225,23 @@ const nav = [
     ]
   },
   {
+    text: '课程',
+    items: [
+      {
+        text: '大前端课程',
+        link: 'https://class.imooc.com/sale/webfullstack2021'
+      },
+      {
+        text: '快速了解新版Vue3.0 + Vite开发',
+        link: 'https://www.imooc.com/learn/1245'
+      },
+      {
+        text: '3小时速成 Vue2.x 核心技术',
+        link: 'https://www.imooc.com/learn/1091'
+      }
+    ]
+  },
+  {
     text: '关于',
     items: [
       {
@@ -245,12 +265,29 @@ const nav = [
         text: '参与贡献',
         items: [
           {
-            text: 'VuePress配置',
-            link: '/course/vuepress/'
+            text: '贡献指南',
+            link: '/course/notes/'
           },
           {
-            text: '博文规范',
-            link: '/course/notes/'
+            text: '项目说明',
+            link: '/course/vuepress/'
+          }
+        ]
+      },
+      {
+        text: '社交媒介',
+        items: [
+          {
+            text: '官方博客',
+            link: 'https://www.toimc.com'
+          },
+          {
+            text: '微博',
+            link: 'https://weibo.com/wayearn'
+          },
+          {
+            text: '团队介绍',
+            link: '/about/'
           }
         ]
       }
@@ -259,41 +296,85 @@ const nav = [
 ]
 
 const sidebar = {
-  '/basic/':[{
-    title: 'Koa',
-    collapsable: false,
-    children: genSidebarConfig('basic/node', siderBarOptions)
-  }],
+  '/basic/': [
+    {
+      title: 'Node.js进阶',
+      collapsable: false,
+      children: genSidebarConfig('basic/node', siderBarOptions)
+    },
+    {
+      title: 'TypeScript',
+      collapsable: false,
+      children: genSidebarConfig('basic/ts', siderBarOptions)
+    }
+  ],
   '/project/': [
+    {
+      title: '社区PC',
+      collapsable: false,
+      children: genSidebarConfig('project/community-pc', siderBarOptions)
+    },
+    {
+      title: '社区管理后台',
+      collapsable: false,
+      children: genSidebarConfig('project/community-admin', siderBarOptions)
+    },
+    {
+      title: '社区WebApp',
+      collapsable: false,
+      children: genSidebarConfig('project/community-webapp', siderBarOptions)
+    },
     {
       title: '小程序',
       collapsable: false,
       children: genSidebarConfig('project/community-miniapp', siderBarOptions)
     },
     {
-      title: 'React',
+      title: 'Flutter 2.0',
       collapsable: false,
-      children: [
-        'react/'
-      ]
+      children: genSidebarConfig('project/community-flutter', siderBarOptions)
+    },
+    {
+      title: 'Electron桌面端',
+      collapsable: false,
+      children: genSidebarConfig('project/community-electron', siderBarOptions)
+    },
+    {
+      title: 'React世界',
+      collapsable: false,
+      children: ['react/']
     }
   ],
   '/course/': [
     {
-      title: 'vuepress使用说明',
+      title: '参与贡献',
+      collapsable: false,
+      children: genSidebarConfig('course/notes', siderBarOptions)
+    },
+    {
+      title: '项目说明',
       collapsable: false,
       children: genSidebarConfig('course/vuepress', siderBarOptions)
     },
     {
-      title: '博文规范',
+      title: 'Pull Request教程',
       collapsable: false,
-      children: genSidebarConfig('course/notes', siderBarOptions)
+      children: genSidebarConfig('course/pull-request', siderBarOptions)
+    }
+  ],
+  '/about/': [
+    {
+      title: '关于我们',
+      collapsable: false,
+      // children: ['', '01-课程评价', '02-招募英才']
+      children: genSidebarConfig('about', { ...siderBarOptions, hasSub: false })
     }
   ],
   '/': [
     {
       title: '首页',
-      collapsable: false
+      collapsable: false,
+      children: ['']
     }
   ]
 }
